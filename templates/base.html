@@ -1,34 +1,97 @@
-<FORM NAME="Calc">
-    <TABLE BORDER=4>
-        <TR>
-            <TD>
-                <INPUT TYPE="text" NAME="Input" Size="100">
-                <br>
-            </TD>
-        </TR>
-        <TR>
-            <TD>
-                <INPUT TYPE="button" NAME="one" VALUE=" 1 " OnClick="Calc.Input.value += '1'">
-                <INPUT TYPE="button" NAME="two" VALUE=" 2 " OnCLick="Calc.Input.value += '2'">
-                <INPUT TYPE="button" NAME="three" VALUE=" 3 " OnClick="Calc.Input.value += '3'">
-                <INPUT TYPE="button" NAME="plus" VALUE=" + " OnClick="Calc.Input.value += ' + '">
-                <br>
-                <INPUT TYPE="button" NAME="four" VALUE=" 4 " OnClick="Calc.Input.value += '4'">
-                <INPUT TYPE="button" NAME="five" VALUE=" 5 " OnCLick="Calc.Input.value += '5'">
-                <INPUT TYPE="button" NAME="six" VALUE=" 6 " OnClick="Calc.Input.value += '6'">
-                <INPUT TYPE="button" NAME="minus" VALUE=" - " OnClick="Calc.Input.value += ' - '">
-                <br>
-                <INPUT TYPE="button" NAME="seven" VALUE=" 7 " OnClick="Calc.Input.value += '7'">
-                <INPUT TYPE="button" NAME="eight" VALUE=" 8 " OnCLick="Calc.Input.value += '8'">
-                <INPUT TYPE="button" NAME="nine" VALUE=" 9 " OnClick="Calc.Input.value += '9'">
-                <INPUT TYPE="button" NAME="times" VALUE=" x " OnClick="Calc.Input.value += ' * '">
-                <br>
-                <INPUT TYPE="button" NAME="clear" VALUE=" c " OnClick="Calc.Input.value = ''">
-                <INPUT TYPE="button" NAME="zero" VALUE=" 0 " OnClick="Calc.Input.value += '0'">
-                <INPUT TYPE="button" NAME="DoIt" VALUE=" = " OnClick="Calc.Input.value = eval(Calc.Input.value)">
-                <INPUT TYPE="button" NAME="div" VALUE=" / " OnClick="Calc.Input.value += ' / '">
-                <br>
-            </TD>
-        </TR>
-    </TABLE>
-</FORM>
+<html>
+    <head>
+        <title>Kalkulator - Renovasi Otak</title>
+        <script>
+            function insert(num){
+                document.form.textview.value = document.form.textview.value+num;
+            }
+            function equal(){
+                var exp = document.form.textview.value;
+                if(exp){
+                    document.form.textview.value = eval(exp)
+                }
+            }
+            function clean(){
+                document.form.textview.value = "";
+            }
+            function back(){
+                var exp = document.form.textview.value;
+                document.form.textview.value = exp.substring(0,exp.length-1);
+            }
+        </script>
+        <style>
+            *{
+                margin: 0%;
+                padding: 0%;
+            }
+            .button{
+                width:50;
+                height:50;
+                font-size:25;
+                margin: 2;
+                cursor: pointer;
+                background: grey;
+                border:none;
+                color: white;
+            }
+            .textview{
+                width:217;
+                margin:5;
+                font-size: 25;
+                padding:5;
+                border: none;
+            }
+            .main{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            .bg{
+                background: linear-gradient(to right, rgb(17, 141, 212),rgb(20, 233, 169));
+                height: 100%;
+            }
+            .button:active{
+                background: rgb(54, 54, 54);
+            }
+        </style>
+    </head>
+<body>
+    <div class="bg"></div>
+    <div class="main">
+        <form name="form">
+            <input class="textview" name="textview">
+        </form>
+        <table>
+            <tr>
+                <td><input class="button" type="button" value="C" onclick="clean()"></td>
+                <td><input class="button" type="button" value="Del" onclick="back()"></td>
+                <td><input class="button" type="button" value="/" onclick="insert('/')"></td>
+                <td><input class="button" type="button" value="x" onclick="insert('*')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="7" onclick="insert(7)"></td>
+                <td><input class="button" type="button" value="8" onclick="insert(8)"></td>
+                <td><input class="button" type="button" value="9" onclick="insert(9)"></td>
+                <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="4" onclick="insert(4)"></td>
+                <td><input class="button" type="button" value="5" onclick="insert(5)"></td>
+                <td><input class="button" type="button" value="6" onclick="insert(6)"></td>
+                <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="1" onclick="insert(1)"></td>
+                <td><input class="button" type="button" value="2" onclick="insert(2)"></td>
+                <td><input class="button" type="button" value="3" onclick="insert(3)"></td>
+                <td rowspan="5"><input class="button" type="button" style="height: 106" value="=" onclick="equal()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="button" type="button" style="width: 106" value="0" onclick="insert(0)"></td>
+                <td><input class="button" type="button" value="." onclick="insert('.')"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
